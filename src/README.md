@@ -12,4 +12,3 @@ For example the below;
 
 - `--style scss` that allows us to use sass.
 - `--prefix toh` so that instead of `<app-componentName>` it would be `<toh-componentName>`
-

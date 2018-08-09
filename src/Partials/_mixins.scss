@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Lobster|Montserrat|Raleway|Muli');
+@mixin base {
+  html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    font-family: 'Muli', sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 5px 0;
+    font-family: "Raleway", sans-serif;
+  }
+}
