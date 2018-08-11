@@ -10,5 +10,13 @@
   @import "~bootstrap/dist/css/bootstrap.min.css";
 */
 
+@import "./Partials/variables";
 @import "./Partials/mixins";
 @include base;
+/* Navbar */
+
+.navbar.navbar-3 .navbar-toggler-icon {
+  background-image: url('https://mdbootstrap.com/img/svg/hamburger1.svg?color=000');
+}
+
+/* List items */

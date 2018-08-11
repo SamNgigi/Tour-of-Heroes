@@ -1,0 +1,52 @@
+/* HeroComponent's private CSS styles */
+
+@import "../../Partials/variables";
+/* List items */
+
+.selected {
+  background-color: $red !important;
+  color: white;
+}
+
+.heroes {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+  li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: $danger-color;
+    margin: .5em;
+    padding: 0;
+    height: 2.4em; // Responsible to height of background
+    border-radius: 4px;
+    &:hover {
+      color: black;
+      background-color: $hover-color;
+    }
+  }
+  li.selected:hover {
+    background-color: $red-selected-hover;
+    color: white;
+  }
+  .text {
+    position: relative;
+    top: 10px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.7em 0.7em 0.7em 0.7em;
+    background-color: $danger-color-dark;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: 1px;
+    height: 2.6em; // responsible for height of background.
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+  }
+}

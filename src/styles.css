@@ -8,6 +8,7 @@
 
   @import "~bootstrap/dist/css/bootstrap.min.css";
 */
+/* MDB Colors */
 @import url("https://fonts.googleapis.com/css?family=Quicksand|Lobster|Montserrat|Raleway|Muli");
 html {
   box-sizing: border-box; }
@@ -34,5 +35,11 @@ h6 {
 
 .navbar {
   padding: 22px; }
+
+/* Navbar */
+.navbar.navbar-3 .navbar-toggler-icon {
+  background-image: url("https://mdbootstrap.com/img/svg/hamburger1.svg?color=000"); }
+
+/* List items */
 
 /*# sourceMappingURL=styles.css.map */
