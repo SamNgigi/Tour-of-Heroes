@@ -1,3 +1,51 @@
-<p>
-  hero-detail works!
-</p>
+<!--
+  Here with the use of the ngIf directive we check if we have any value stored in our selected_hero variable.
+
+  If we do we display the info within this div. If we don't this element will not be displayed.
+-->
+<div *ngIf="is_selected_hero">
+
+  <!--
+  Because our hero property is an instance of our class Hero, when we call our property it will return an object instead of a name.
+
+  {{ hero }} // returns [Object Object] in console.
+
+  So we need to change how we will return our name.
+  
+
+  - The "|"" is a pipe operator. t
+  - The keyword uppercase activates the built-in UpperCasePipe.
+
+  Angular ships many built in pipes.
+-->
+  <h2>{{ is_selected_hero.name }} Details</h2>
+  <div>
+    <span>id: </span>{{ is_selected_hero.id }}
+  </div>
+  <!-- Material input -->
+  <div class="md-form">
+    <!-- 
+    Note that we want to live edit/update the name property of our
+    hero. This is two way data binding that is enabled by our ngModel.
+
+    Although the ngModel is a valid Angular directive,f it is not
+    available by default.
+
+    It belongs to the optional FormsModule and you must opt-in to using it.
+
+    If you don't import the FormsModule you encounter the following error.
+
+    "Uncaught Error: Template parse errors: Can't bind to 'ngModel' since it isn't a known property of 'input'."
+  -->
+    <label for="form1"></label>
+    <input type="text" id="form1" class="form-control property-bind-input" [(ngModel)]="is_selected_hero.name">
+  </div>
+  <!-- 
+<label for="">name:
+
+  <input [(ngModel)]="is_selected_hero.name" placeholder="name">
+</label>
+  -->
+
+
+</div>

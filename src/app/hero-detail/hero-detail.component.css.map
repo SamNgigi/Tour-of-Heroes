@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,oBAAqB;EACnB,KAAK,EAAE,KAAK",
+"sources": ["hero-detail.component.scss"],
 "names": [],
 "file": "hero-detail.component.css"
 }
