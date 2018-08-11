@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // We import the routes we will be navigating to.
 import { HeroesComponent } from '../heroes/heroes.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 // We add the components to a routes array and define the path..
@@ -14,6 +15,12 @@ const routes: Routes = [
     http://localhost:4200/heroes
   */
   { path: 'heroes', component: HeroesComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  /* 
+    This route redirects a URL that fully matches the empty path to the
+    route whose path is '/dashboard'.
+  */
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ]
 
 

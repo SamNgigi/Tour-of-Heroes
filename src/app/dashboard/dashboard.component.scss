@@ -1,0 +1,30 @@
+@import "../../Partials/variables";
+hr {
+  background-color: #fff;
+}
+
+.selected {
+  background-color: $red !important;
+  color: white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  .dash-col {
+    background-color: $danger-color;
+    padding: 15px;
+    &:hover {
+      color: black;
+      background-color: $hover-color;
+    }
+  }
+  .dash-col.selected:hover {
+    background-color: $red-selected-hover;
+    color: white;
+  }
+  .span-col-5 {
+    grid-column: span 5/ auto;
+  }
+}

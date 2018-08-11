@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-3 danger-color">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" routerLink="/dashboard">Tour of Heroes</a>
 
   <!--
      Collapse button 
@@ -30,10 +30,16 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <!-- 
+          The routerLink directive turns a user click on this link into a
+          router navigation.
+
+          It is a public directive in the RouterModule.
+        -->
+        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" routerLink="/heroes">Heroes</a>
       </li>
 
       <!-- Dropdown -->

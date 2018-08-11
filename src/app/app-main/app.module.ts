@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from '../heroes/heroes.component';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { MessagesComponent } from '../messages/messages.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 // We import the Routing Module
 import { AppRoutingModule } from '../app-routing/app-routing.module';
@@ -16,7 +17,8 @@ import { AppRoutingModule } from '../app-routing/app-routing.module';
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   // Here in the imports array we add a list of external modules that the app needs.
   imports: [

@@ -1,0 +1,25 @@
+/* MDB Colors */
+hr {
+  background-color: #fff; }
+
+.selected {
+  background-color: #3b465e !important;
+  color: white; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px; }
+  .grid .dash-col {
+    background-color: #ff4444;
+    padding: 15px; }
+    .grid .dash-col:hover {
+      color: black;
+      background-color: #eceff1; }
+  .grid .dash-col.selected:hover {
+    background-color: #3b465e;
+    color: white; }
+  .grid .span-col-5 {
+    grid-column: span 5/ auto; }
+
+/*# sourceMappingURL=dashboard.component.css.map */
