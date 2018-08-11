@@ -1,0 +1,7 @@
+<div *ngIf="messageService.messages.length" class="mb-5">
+  <h2>Messages</h2>
+  <button class="clear btn btn-danger" (click)="messageService.clearMessage()">Clear
+    <i class="fa fa-flash ml-2"></i>
+  </button>
+  <div *ngFor='let message of messageService.messages'>{{message}}!</div>
+</div>

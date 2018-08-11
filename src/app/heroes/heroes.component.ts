@@ -55,12 +55,13 @@ export class HeroesComponent implements OnInit {
   }
 
   /* 
-   This function takes in the hero form the *ngFor repeater directive
-   that is selected. Passes it in-place of our hero parameter which is
-   of type Hero. Finally we assign its value to selected_hero.
- */
-  onSelect(hero: Hero): void {
-    this.selected_hero = hero;
+    Below is an Angular life-cycle hook called immediately after a
+    component is created.
+
+    It is a good place to put initialization logic.
+  */
+  ngOnInit() {
+    this.getHeroes()
   }
 
   getHeroes(): void {
@@ -86,14 +87,14 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);
 
   }
-  /* 
-    Below is an Angular life-cycle hook called immediately after a
-    component is created.
 
-    It is a good place to put initialization logic.
-  */
-  ngOnInit() {
-    this.getHeroes()
+  /* 
+   This function takes in the hero form the *ngFor repeater directive
+   that is selected. Passes it in-place of our hero parameter which is
+   of type Hero. Finally we assign its value to selected_hero.
+ */
+  onSelect(hero: Hero): void {
+    this.selected_hero = hero;
   }
 
 }
