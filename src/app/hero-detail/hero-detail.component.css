@@ -1,4 +1,12 @@
+/* MDB Colors */
 .property-bind-input {
   color: white; }
+
+input[type=text]:focus:not([readonly]) + label {
+  color: #cc0000; }
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #cc0000;
+  box-shadow: 0 1px 0 0 #cc0000; }
 
 /*# sourceMappingURL=hero-detail.component.css.map */
