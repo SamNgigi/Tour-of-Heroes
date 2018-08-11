@@ -8,6 +8,9 @@ import { HeroesComponent } from '../heroes/heroes.component';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { MessagesComponent } from '../messages/messages.component';
 
+// We import the Routing Module
+import { AppRoutingModule } from '../app-routing/app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,8 @@ import { MessagesComponent } from '../messages/messages.component';
   // Here in the imports array we add a list of external modules that the app needs.
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
