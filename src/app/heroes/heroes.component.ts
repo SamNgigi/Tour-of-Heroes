@@ -64,7 +64,27 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    /* 
+      The method below used to return an array --> Hero []
+
+      this.heroes = this.heroService.getHeroesService();
+
+      Now we adjust it to because it is returning an Observable. The
+      subscribe method is the critical difference.
+
+      So what is happening here.
+
+      Remember that an Observable is a representation of any set data
+      over any amount of time.
+
+      Observables allow us to work asynchronously. The subscribe method
+      will receive data emitted from an Observable to a callback function
+      that sets this component's heroes property to our Observable Heroes
+      array.
+    */
+    this.heroService.getHeroesService()
+      .subscribe(heroes => this.heroes = heroes);
+
   }
   /* 
     Below is an Angular life-cycle hook called immediately after a
