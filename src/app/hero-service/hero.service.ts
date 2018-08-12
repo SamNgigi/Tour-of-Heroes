@@ -53,4 +53,16 @@ export class HeroService {
     this.messageService.addMessage('HeroService: Fetched heroes');
     return of(HEROES);
   }
+
+  /* 
+    We define the getHeroService which returns a singular Hero.
+  */
+  getHeroService(id: number): Observable<Hero> {
+    /* 
+      We also call the message service to notify us the the hero has been
+      fetched.
+    */
+    this.messageService.addMessage(`HeroService: Fetched hero id=${id}`);
+    return of(HEROES.find(hero => hero.id === id))
+  }
 }
