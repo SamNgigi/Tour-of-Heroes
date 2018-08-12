@@ -79,4 +79,9 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(hero => this.is_selected_hero = hero)
   }
 
+  // We go back to previous page
+  goBack(): void {
+    this.locationService.back();
+  }
+
 }
