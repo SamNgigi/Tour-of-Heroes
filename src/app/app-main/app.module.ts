@@ -35,7 +35,7 @@ import { AppRoutingModule } from '../app-routing/app-routing.module';
       The HttpClientInMemoryWebApi module intercepts HTTP requests and
       returns simulated server responses.
 
-      We remove it when a real server is ready to receive requests
+      We remove it when a real server is ready to receive requests then our requests will go through.
     */
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }

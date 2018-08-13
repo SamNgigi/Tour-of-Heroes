@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
 // We import our Hero blueprint
 import { Hero } from '../Hero';
-// We import the HEROES array of Hero object instances.
+/* 
 import { HEROES } from '../heroes-array';
+
+  We replace HEROES with our in-memory-data-service which we use to
+  simulate a server. Note that we don't have to import our
+  in-memory-data-service.
+
+  We however import HttpClient and HttpHeaders in-order to communicate with the server.
+*/
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 // We import Observable and of symbols from the Angular RxJs library
 import { Observable, of } from 'rxjs';
 // We import our MessageService
@@ -13,6 +22,8 @@ import { MessageService } from '../message-service/message.service';
 })
 export class HeroService {
 
+  private heroes_url = 'api/heroes'; // URL to web api.
+
   /* 
     Below is what we call a service-in-service scenario: We inject the
     MessageService into the HeroService which is injected into the HeroesComponent
@@ -21,7 +32,14 @@ export class HeroService {
     hero service will be private because it is bound to the
     getHeroesService method.
   */
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
+
+  private log(message: string) {
+    this.messageService.addMessage(`HeroService: ${message}`);
+  }
 
   /*
    We add a getHeroes function
@@ -49,8 +67,12 @@ export class HeroService {
       value which in this case is array of HEROES.
 
       We update our method that will send message after fetching notes.
+
+      this.messageService.addMessage('HeroService: Fetched heroes');
+      return of(HEROES);
+
+      We convert the above into below to make use of HttpClient
     */
-    this.messageService.addMessage('HeroService: Fetched heroes');
-    return of(HEROES);
+    return this.http.get<Hero[]>(this.heroes_url);
   }
 }

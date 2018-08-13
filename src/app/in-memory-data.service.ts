@@ -1,3 +1,8 @@
+/* 
+  This here replaces the heroes_array.ts.
+
+  We will use it to simulate a call to a remote server.
+*/
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 export class InMemoryDataService implements InMemoryDbService {
