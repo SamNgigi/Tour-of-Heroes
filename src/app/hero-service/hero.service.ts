@@ -16,6 +16,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 // We import our MessageService
 import { MessageService } from '../message-service/message.service';
+/* 
+  We import the following symbols
+  1. catchError for catching errors,
+  2. map for extracting data from nested json and 
+  3. tap that looks at the observable values does something with them the passes them along.
+
+  The tap call back doesn't touch  the values themselves
+*/
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +46,6 @@ export class HeroService {
     private messageService: MessageService
   ) { }
 
-  private log(message: string) {
-    this.messageService.addMessage(`HeroService: ${message}`);
-  }
 
   /*
    We add a getHeroes function
@@ -72,7 +78,60 @@ export class HeroService {
       return of(HEROES);
 
       We convert the above into below to make use of HttpClient
+
+      We have swapped the of() method for the http.get<Hero[]>() method which where both return an Observable.
     */
-    return this.http.get<Hero[]>(this.heroes_url);
+    return this.http.get<Hero[]>(this.heroes_url)
+      .pipe(
+        tap(heroes => this.log('fetched heroes')),
+        catchError(this.handleError('getHeroesService', []))
+      );
+
+    /* 
+      All HttpClient methods return an RxJS Observable of something.
+
+      Https is a request/response protocol where by when you make a request it returns a single response.
+
+      In general and observable can return multiple values over time.
+
+      An observable from HttpClient always emits a single value and then
+      completes, never to emit again. In this case the http.get () is returning a observable hero arrays.
+    */
   }
+
+  getHeroByIdService(id: number): Observable<Hero> {
+    const hero_id_url = `${this.heroes_url}/${id}`;
+    return this.http.get<Hero>(hero_id_url)
+      .pipe(
+        tap(hero => this.log(`fetched hero id= ${id}`)),
+        catchError(this.handleError<Hero>(`getHeroByIdService id=${id}`))
+      )
+  }
+
+  /* 
+    We create a method to deal with the https operation that failed.
+
+    @param operation - operation that failed
+    @param result - optional value to return as the observable result.
+  */
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // We log the error
+      console.error(error);
+      // Message to be displayed by the messageService in the heroService.
+      this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning empty result.
+      return of(result as T);
+    }
+  }
+
+  /* 
+    A function that will log a HeroService message with the
+    MessageService.
+  */
+  private log(message: string) {
+    this.messageService.addMessage(`HeroService: ${message}`);
+  }
+
 }
