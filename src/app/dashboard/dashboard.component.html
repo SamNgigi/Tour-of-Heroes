@@ -2,14 +2,16 @@
   <toh-messages></toh-messages>
 </div>
 <div class="container">
-  <h3>Top Heroes</h3>
-  <hr>
   <div class="grid grid-pad">
+    <div class="span-col-5">
+      <h3>Top Heroes</h3>
+      <hr>
+    </div>
+    <toh-hero-detail [is_selected_hero]="selected_hero" class="span-col-5"></toh-hero-detail>
     <a *ngFor="let hero of heroes" class="dash-col" (click)="onSelect(hero)" [class.selected]="hero===selected_hero">
       <div class="module hero">
         <h4>{{hero.name}}</h4>
       </div>
     </a>
-    <toh-hero-detail [is_selected_hero]="selected_hero" class="span-col-5"></toh-hero-detail>
   </div>
 </div>

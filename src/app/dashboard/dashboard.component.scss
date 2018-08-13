@@ -28,3 +28,12 @@ hr {
     grid-column: span 5/ auto;
   }
 }
+
+@media screen and (max-width: 770px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+    .span-col-5 {
+      grid-column: 1;
+    }
+  }
+}
