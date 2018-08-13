@@ -1,17 +1,37 @@
 import { Injectable } from '@angular/core';
 // We import our Hero blueprint
 import { Hero } from '../Hero';
-// We import the HEROES array of Hero object instances.
+/* 
 import { HEROES } from '../heroes-array';
+
+  We replace HEROES with our in-memory-data-service which we use to
+  simulate a server. Note that we don't have to import our
+  in-memory-data-service.
+
+  We however import HttpClient and HttpHeaders in-order to communicate with the server.
+*/
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 // We import Observable and of symbols from the Angular RxJs library
 import { Observable, of } from 'rxjs';
 // We import our MessageService
 import { MessageService } from '../message-service/message.service';
+/* 
+  We import the following symbols
+  1. catchError for catching errors,
+  2. map for extracting data from nested json and 
+  3. tap that looks at the observable values does something with them the passes them along.
+
+  The tap call back doesn't touch  the values themselves
+*/
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
+
+  private heroes_url = 'api/heroes'; // URL to web api.
 
   /* 
     Below is what we call a service-in-service scenario: We inject the
@@ -21,7 +41,11 @@ export class HeroService {
     hero service will be private because it is bound to the
     getHeroesService method.
   */
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
+
 
   /*
    We add a getHeroes function
@@ -49,20 +73,65 @@ export class HeroService {
       value which in this case is array of HEROES.
 
       We update our method that will send message after fetching notes.
+
+      this.messageService.addMessage('HeroService: Fetched heroes');
+      return of(HEROES);
+
+      We convert the above into below to make use of HttpClient
+
+      We have swapped the of() method for the http.get<Hero[]>() method which where both return an Observable.
     */
-    this.messageService.addMessage('HeroService: Fetched heroes');
-    return of(HEROES);
+    return this.http.get<Hero[]>(this.heroes_url)
+      .pipe(
+        tap(heroes => this.log('fetched heroes')),
+        catchError(this.handleError('getHeroesService', []))
+      );
+
+    /* 
+      All HttpClient methods return an RxJS Observable of something.
+
+      Https is a request/response protocol where by when you make a request it returns a single response.
+
+      In general and observable can return multiple values over time.
+
+      An observable from HttpClient always emits a single value and then
+      completes, never to emit again. In this case the http.get () is returning a observable hero arrays.
+    */
+  }
+
+  getHeroByIdService(id: number): Observable<Hero> {
+    const hero_id_url = `${this.heroes_url}/${id}`;
+    return this.http.get<Hero>(hero_id_url)
+      .pipe(
+        tap(hero => this.log(`fetched hero id= ${id}`)),
+        catchError(this.handleError<Hero>(`getHeroByIdService id=${id}`))
+      )
   }
 
   /* 
-    We define the getHeroService which returns a singular Hero.
+    We create a method to deal with the https operation that failed.
+
+    @param operation - operation that failed
+    @param result - optional value to return as the observable result.
   */
-  getHeroService(id: number): Observable<Hero> {
-    /* 
-      We also call the message service to notify us the the hero has been
-      fetched.
-    */
-    this.messageService.addMessage(`HeroService: Fetched hero id=${id}`);
-    return of(HEROES.find(hero => hero.id === id))
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // We log the error
+      console.error(error);
+      // Message to be displayed by the messageService in the heroService.
+      this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning empty result.
+      return of(result as T);
+    }
   }
+
+  /* 
+    A function that will log a HeroService message with the
+    MessageService.
+  */
+  private log(message: string) {
+    this.messageService.addMessage(`HeroService: ${message}`);
+  }
+
 }

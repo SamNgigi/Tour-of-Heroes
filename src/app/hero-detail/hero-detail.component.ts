@@ -75,7 +75,7 @@ export class HeroDetailComponent implements OnInit {
       the value returned. Indicating which hero we are to fetch.
     */
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHeroService(id)
+    this.heroService.getHeroByIdService(id)
       .subscribe(hero => this.is_selected_hero = hero)
   }
 
