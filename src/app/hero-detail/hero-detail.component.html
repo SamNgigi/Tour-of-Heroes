@@ -1,11 +1,12 @@
-<!--
+<div class="container">
+  <!--
   Here with the use of the ngIf directive we check if we have any value stored in our selected_hero variable.
 
   If we do we display the info within this div. If we don't this element will not be displayed.
 -->
-<div *ngIf="is_selected_hero">
+  <div *ngIf="is_selected_hero">
 
-  <!--
+    <!--
   Because our hero property is an instance of our class Hero, when we call our property it will return an object instead of a name.
 
   {{ hero }} // returns [Object Object] in console.
@@ -18,13 +19,13 @@
 
   Angular ships many built in pipes.
 -->
-  <h2>{{ is_selected_hero.name }} Details</h2>
-  <div class="mt-3">
-    <span>id: </span>{{ is_selected_hero.id }}
-  </div>
-  <!-- Material input -->
-  <div class="md-form mt-3">
-    <!-- 
+    <h2>{{ is_selected_hero.name }} Details</h2>
+    <div class="mt-3">
+      <span>id: </span>{{ is_selected_hero.id }}
+    </div>
+    <!-- Material input -->
+    <div class="md-form mt-3">
+      <!-- 
     Note that we want to live edit/update the name property of our
     hero. This is two way data binding that is enabled by our ngModel.
 
@@ -37,12 +38,14 @@
 
     "Uncaught Error: Template parse errors: Can't bind to 'ngModel' since it isn't a known property of 'input'."
   -->
-    <label for="form1"></label>
-    <input type="text" id="form1" class="form-control property-bind-input" [(ngModel)]="is_selected_hero.name">
-  </div>
-  <!-- Go back button -->
-  <button class="btn btn-danger btn-lg btn-block" (click)="goBack()">
-    <i class="fa fa-backward mr-3"></i>Back</button>
+      <label for="form1"></label>
+      <input type="text" id="form1" class="form-control property-bind-input" [(ngModel)]="is_selected_hero.name">
+    </div>
+    <!-- Go back button -->
+    <button class="btn btn-danger btn-lg btn-block" (click)="goBack()">
+      <i class="fa fa-backward mr-3"></i>Back</button>
 
+
+  </div>
 
 </div>
