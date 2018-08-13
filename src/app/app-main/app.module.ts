@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // importing the FormsModule where the ngModel lives.
 import { FormsModule } from '@angular/forms';
+// Importing the HttpClient module
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from '../heroes/heroes.component';
@@ -24,7 +26,8 @@ import { AppRoutingModule } from '../app-routing/app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
