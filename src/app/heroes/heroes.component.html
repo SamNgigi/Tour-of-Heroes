@@ -13,7 +13,11 @@
         So we call the onSelect function with our single hero object passed in.
       -->
         <li *ngFor="let hero of heroes" [class.selected]="hero === selected_hero" (click)="onSelect(hero)">
-          <span class="badge">{{ hero.id }}:</span> {{ hero.name }}
+          <span class="badge">{{ hero.id }}:</span>
+          {{ hero.name }}
+          <span class="delete" title="delete hero">
+            <i class="fa fa-times-circle fa-lg" (click)="deleteHero(hero)"></i>
+          </span>
         </li>
       </ul>
       <!-- 

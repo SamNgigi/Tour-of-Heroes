@@ -113,14 +113,26 @@ export class HeroesComponent implements OnInit {
       })
   }
 
+  deleteHero(hero: Hero): void {
+    /* 
+      Although the this component delegates deleting a hero to the Hero Service it remains responsible for updating its own list of heroes.
+
+      The below method returns the list of heroes without the one we want to delete.
+    */
+    this.heroes = this.heroes.filter(hero_item => hero_item !== hero);
+    // The deleteHeroService will do the actual deleting.
+    this.heroService.deleteHeroService(hero)
+      .subscribe()
+  }
+
   /* 
    This function takes in the hero form the *ngFor repeater directive
    that is selected. Passes it in-place of our hero parameter which is
    of type Hero. Finally we assign its value to selected_hero.
 
-   onSelect(hero: Hero): void {
-     this.selected_hero = hero;
-   }
- */
+   */
+  onSelect(hero: Hero): void {
+    this.selected_hero = hero;
+  }
 
 }

@@ -25,6 +25,7 @@ import { MessageService } from '../message-service/message.service';
   The tap call back doesn't touch  the values themselves
 */
 import { catchError, map, tap } from 'rxjs/operators';
+import { url } from 'inspector';
 
 /* 
   We add httpOptions to specify additional  header info about our
@@ -138,6 +139,23 @@ export class HeroService {
         tap(_ => this.log(`updated hero id=${hero.id}`)),
         catchError(this.handleError<any>('updateHeroService'))
       )
+  }
+
+  // The deleteHeroService
+  deleteHeroService(hero: Hero | number): Observable<Hero> {
+    /* 
+      The below statement can be read as;
+
+      if hero is a number assign it to id else assign hero.id to id.
+    */
+    const id = typeof hero === 'number' ? hero : hero.id;
+    const hero_id_url = `${this.heroes_url}/${id}`;
+
+    return this.http.delete<Hero>(hero_id_url, httpOptions)
+      .pipe(
+        tap((hero: Hero) => this.log(`Delete hero w/ id=${id}`)),
+        catchError(this.handleError<Hero>('deleteHero'))
+      );
   }
 
   /* 
