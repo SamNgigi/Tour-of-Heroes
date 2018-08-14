@@ -41,10 +41,19 @@
       <label for="form1"></label>
       <input type="text" id="form1" class="form-control property-bind-input" [(ngModel)]="is_selected_hero.name">
     </div>
-    <!-- Go back button -->
-    <button class="btn btn-danger btn-lg btn-block" (click)="goBack()">
-      <i class="fa fa-backward mr-3"></i>Back</button>
+    <div class="row">
+      <div class="col-6">
+        <!-- Go back button -->
+        <button class="btn btn-danger btn-lg btn-block" (click)="goBack()">
+          <i class="fa fa-backward mr-3"></i>Back</button>
 
+      </div>
+      <div class="col-6">
+        <button class="btn btn-elegant btn-lg btn-block" (click)="save()">Save
+          <i class="fa fa-save ml-3"></i>
+        </button>
+      </div>
+    </div>
 
   </div>
 

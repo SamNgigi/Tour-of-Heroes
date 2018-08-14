@@ -26,6 +26,14 @@ import { MessageService } from '../message-service/message.service';
 */
 import { catchError, map, tap } from 'rxjs/operators';
 
+/* 
+  We add httpOptions to specify additional  header info about our
+  Observable object
+*/
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -99,12 +107,26 @@ export class HeroService {
     */
   }
 
+  // Returns a single hero observable based on id.
   getHeroByIdService(id: number): Observable<Hero> {
     const hero_id_url = `${this.heroes_url}/${id}`;
     return this.http.get<Hero>(hero_id_url)
       .pipe(
         tap(hero => this.log(`fetched hero id= ${id}`)),
         catchError(this.handleError<Hero>(`getHeroByIdService id=${id}`))
+      )
+  }
+
+  // We add the updateHeroService
+  updateHeroService(hero: Hero): Observable<any> {
+    return this.http.put(this.heroes_url, hero, httpOptions)
+      .pipe(
+        /* 
+          It seems here i have to use the underscore _. If i use hero
+          there i get hero does not have property hid
+        */
+        tap(_ => this.log(`updated hero id=${hero.id}`)),
+        catchError(this.handleError<any>('updateHeroService'))
       )
   }
 
