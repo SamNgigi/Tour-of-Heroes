@@ -13,6 +13,7 @@ import { HeroesComponent } from '../heroes/heroes.component';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { MessagesComponent } from '../messages/messages.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { SearchHeroesComponent } from '../search-heroes/search-heroes.component';
 
 // We import the Routing Module
 import { AppRoutingModule } from '../app-routing/app-routing.module';
@@ -23,7 +24,8 @@ import { AppRoutingModule } from '../app-routing/app-routing.module';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchHeroesComponent
   ],
   // Here in the imports array we add a list of external modules that the app needs.
   imports: [

@@ -156,6 +156,22 @@ export class HeroService {
       );
   }
 
+  searchHeroesService(query: string): Observable<Hero[]> {
+    if (!query.trim()) {
+      // If there is no search query return empty array
+      return of([]);
+    }
+    /* 
+      searchHeroesService is very similar to getHeroes. The only
+      difference is the url which includes the /?name=${query}.
+    */
+    return this.http.get<Hero[]>(`${this.heroes_url}/?name=${query}`)
+      .pipe(
+        tap((hero: Hero) => this.log(`Found heroes matching "${query}`)),
+        catchError(this.handleError<Hero[]>('searchHeroesService', []))
+      );
+  }
+
   /* 
     We create a method to deal with the https operation that failed.
 

@@ -11,8 +11,11 @@
         Here when a user clicks on any of the generated <li> elements, we want to execute the onSelect(hero) function.
 
         So we call the onSelect function with our single hero object passed in.
+
+        (click)="onSelect(hero)"
+ 
       -->
-        <li *ngFor="let hero of heroes" [class.selected]="hero === selected_hero" (click)="onSelect(hero)">
+        <li *ngFor="let hero of heroes" [class.selected]="hero === selected_hero" routerLink="/detail/{{hero.id}}">
           <span class="badge">{{ hero.id }}:</span>
           {{ hero.name }}
           <span class="delete" title="delete hero">
