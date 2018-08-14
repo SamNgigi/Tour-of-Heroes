@@ -50,3 +50,19 @@
     border-radius: 4px 0 0 4px;
   }
 }
+
+@import '../../Partials/variables';
+// Input text color 
+.add-hero-input {
+  color: white;
+}
+
+// Highlight color for our input.
+input[type=text]:focus:not([readonly])+label {
+  color: $danger-color-dark;
+}
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid $danger-color-dark;
+  box-shadow: 0 1px 0 0 $danger-color-dark;
+}

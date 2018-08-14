@@ -37,6 +37,17 @@
         <toh-hero-detail [is_selected_hero]="selected_hero"></toh-hero-detail>
       -->
       <toh-messages></toh-messages>
+      <h2>Add Hero</h2>
+      <div class="md-form mt-3">
+        <label for="form1">Hero name</label>
+        <input type="text" id="form1" class="form-control add-hero-input" #heroName>
+      </div>
+      <!-- 
+        click passes input value to our addHero function then clears
+        output
+      -->
+      <button class="btn btn-elegant btn-lg btn-block" (click)="addHero(heroName.value); heroName.value=''">
+        <i class="fa fa-plus mr-3"></i>Add Hero</button>
     </div>
   </div>
 </div>

@@ -82,7 +82,8 @@ export class HeroDetailComponent implements OnInit {
   // Saving changes to hero.
   save(): void {
     /* 
-      We use the updateHeroService method in heroService to update a hero then go back.
+      We use the updateHeroService method in heroService to update a hero
+      then go back.
     */
     this.heroService.updateHeroService(this.is_selected_hero)
       .subscribe(() => this.goBack())
