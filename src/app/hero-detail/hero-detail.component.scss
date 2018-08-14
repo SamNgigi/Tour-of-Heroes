@@ -1,8 +1,10 @@
 @import '../../Partials/variables';
+// Input text color 
 .property-bind-input {
   color: white;
 }
 
+// Highlight color for our input.
 input[type=text]:focus:not([readonly])+label {
   color: $danger-color-dark;
 }

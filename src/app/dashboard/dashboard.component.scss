@@ -29,6 +29,10 @@ hr {
   }
 }
 
+a {
+  color: inherit;
+}
+
 @media screen and (max-width: 770px) {
   .grid {
     grid-template-columns: repeat(1, 1fr);

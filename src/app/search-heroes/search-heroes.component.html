@@ -1,0 +1,22 @@
+<form class="form-inline">
+  <div class="md-form my-0">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search Hero" aria-label="Search" #searchBox id="search-box"
+      (keyup)="searchHeroes(searchBox.value)">
+  </div>
+</form>
+<ul class="search-result">
+  <!-- 
+      *ngFor iterates over a list called heroes$ not heroes.
+
+      the $ is a convention that indicating that heroes$ is an Observable, not an array.
+
+      *ngFor can't do anything with an Observable so we add the async pip which identifies Angular's AsyncPipe.
+
+      The AsyncPipe subscribes to an Observable automatically so you won't have to do so in the component class.
+    -->
+  <li *ngFor="let hero of heroes$ | async">
+    <a routerLink="/detail/{{hero.id}}">
+      {{hero.name}}
+    </a>
+  </li>
+</ul>

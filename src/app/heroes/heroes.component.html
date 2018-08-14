@@ -11,9 +11,16 @@
         Here when a user clicks on any of the generated <li> elements, we want to execute the onSelect(hero) function.
 
         So we call the onSelect function with our single hero object passed in.
+
+        (click)="onSelect(hero)"
+ 
       -->
-        <li *ngFor="let hero of heroes" [class.selected]="hero === selected_hero" (click)="onSelect(hero)">
-          <span class="badge">{{ hero.id }}:</span> {{ hero.name }}
+        <li *ngFor="let hero of heroes" [class.selected]="hero === selected_hero" routerLink="/detail/{{hero.id}}">
+          <span class="badge">{{ hero.id }}:</span>
+          {{ hero.name }}
+          <span class="delete" title="delete hero">
+            <i class="fa fa-times-circle fa-lg" (click)="deleteHero(hero)"></i>
+          </span>
         </li>
       </ul>
       <!-- 
@@ -34,8 +41,20 @@
       <!-- 
         Note that whatever we will call our Input property binding var
         here is what we will have to declare it in our child component. 
+        <toh-hero-detail [is_selected_hero]="selected_hero"></toh-hero-detail>
       -->
-      <toh-hero-detail [is_selected_hero]="selected_hero"></toh-hero-detail>
+      <toh-messages></toh-messages>
+      <h2>Add Hero</h2>
+      <div class="md-form mt-3">
+        <label for="form1">Hero name</label>
+        <input type="text" id="form1" class="form-control add-hero-input" #heroName>
+      </div>
+      <!-- 
+        click passes input value to our addHero function then clears
+        output
+      -->
+      <button class="btn btn-elegant btn-lg btn-block" (click)="addHero(heroName.value); heroName.value=''">
+        <i class="fa fa-plus mr-3"></i>Add Hero</button>
     </div>
   </div>
 </div>

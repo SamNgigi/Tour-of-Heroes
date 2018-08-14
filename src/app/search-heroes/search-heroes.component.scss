@@ -1,0 +1,26 @@
+@import '../../Partials/variables';
+// Highlight color for our input.
+input[type=text]:focus:not([readonly])+label {
+  color: $red-darken-4;
+}
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid $red-darken-4;
+  box-shadow: 0 1px 0 0 $red-darken-4;
+}
+
+.search-result {
+  list-style-type: none;
+  li {
+    margin: 10px 0px;
+    padding: 10px;
+    background-color: $red-selected-hover;
+    border-radius: 5px;
+    a {
+      color: inherit;
+    }
+    &:hover {
+      background-color: black;
+    }
+  }
+}

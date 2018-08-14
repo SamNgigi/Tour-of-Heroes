@@ -89,10 +89,48 @@ export class HeroesComponent implements OnInit {
   }
 
   /* 
+    We add our addHero method that takes in the input value from our Hero
+    name form.
+
+    We then pass in the hero to our addHeroService that adds it to our
+    remote server.
+  */
+  addHero(name: string): void {
+    // We remove any spaces from our hero input.
+    name = name.trim();
+    // We check if we submitted a blank input
+    if (!name) { return; }
+    /* 
+      For a non-blank input we create a Hero-like object from name and
+      pass it to the addHeroService method. 
+      When the addHeroService save successfully the subscribe callback
+      receives the new hero and pushes it into the heroes list for
+      display.
+    */
+    this.heroService.addHeroService({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      })
+  }
+
+  deleteHero(hero: Hero): void {
+    /* 
+      Although the this component delegates deleting a hero to the Hero Service it remains responsible for updating its own list of heroes.
+
+      The below method returns the list of heroes without the one we want to delete.
+    */
+    this.heroes = this.heroes.filter(hero_item => hero_item !== hero);
+    // The deleteHeroService will do the actual deleting.
+    this.heroService.deleteHeroService(hero)
+      .subscribe()
+  }
+
+  /* 
    This function takes in the hero form the *ngFor repeater directive
    that is selected. Passes it in-place of our hero parameter which is
    of type Hero. Finally we assign its value to selected_hero.
- */
+
+   */
   onSelect(hero: Hero): void {
     this.selected_hero = hero;
   }

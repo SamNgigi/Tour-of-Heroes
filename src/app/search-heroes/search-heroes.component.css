@@ -1,0 +1,21 @@
+/* MDB Colors */
+input[type=text]:focus:not([readonly]) + label {
+  color: #b71c1c; }
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #b71c1c;
+  box-shadow: 0 1px 0 0 #b71c1c; }
+
+.search-result {
+  list-style-type: none; }
+  .search-result li {
+    margin: 10px 0px;
+    padding: 10px;
+    background-color: #3b465e;
+    border-radius: 5px; }
+    .search-result li a {
+      color: inherit; }
+    .search-result li:hover {
+      background-color: black; }
+
+/*# sourceMappingURL=search-heroes.component.css.map */
